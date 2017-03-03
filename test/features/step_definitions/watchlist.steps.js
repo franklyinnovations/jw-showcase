@@ -144,6 +144,10 @@ var stepsDefinition = function () {
 
     this.Then(/^the remove from watchlist button should be visible in the card$/, function (callback) {
 
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
+
         browser
             .findElement(by.css('.feed .jw-card-slider:nth-child(1) .jw-card-slider-slide:first-child'))
             .findElement(by.css('.jw-card-watchlist-button'))

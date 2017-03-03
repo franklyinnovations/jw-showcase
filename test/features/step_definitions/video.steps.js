@@ -208,6 +208,10 @@ var stepsDefinition = function () {
 
     this.Then(/^the play icon should be visible$/, function (callback) {
 
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
+
         browser
             .findElement(by.css('.jw-display-icon-container .jw-icon-display'))
             .isDisplayed()
@@ -218,6 +222,10 @@ var stepsDefinition = function () {
     });
 
     this.Then(/^the video title and description should be visible$/, function (callback) {
+
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
 
         browser
             .findElement(by.css('.jw-video-details'))

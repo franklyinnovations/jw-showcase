@@ -115,6 +115,10 @@ var stepsDefinition = function () {
 
     this.Then(/^the featured slider should be visible/, function (callback) {
 
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
+
         browser
             .findElement(by.css('.featured .jw-card-slider.jw-card-slider-flag-featured'))
             .isDisplayed()
@@ -228,6 +232,10 @@ var stepsDefinition = function () {
 
     this.Then(/^the title and description should be visible in the featured slider/, function (callback) {
 
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
+
         browser
             .findElement(by.css('.featured .jw-card-slider-flag-featured .jw-card-slider-slide.is-visible'))
             .findElement(by.css('.jw-card-info'))
@@ -242,6 +250,11 @@ var stepsDefinition = function () {
 
         scrollToElement('.feed .jw-card-slider-flag-default:first-child')
             .then(function () {
+
+                if ('safari' === browser.browserName) {
+                    return callback(null, 'isDisplayed is not supported by SafariDriver');
+                }
+
                 browser
                     .findElement(by.css('.feed .jw-card-slider-flag-default:first-child'))
                     .findElement(by.css('.jw-card-slider-slide:first-child .jw-card-title'))
@@ -254,6 +267,10 @@ var stepsDefinition = function () {
     });
 
     this.Then(/^I should see the title of the first default slider/, function (callback) {
+
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
 
         browser
             .findElement(by.css('.feed .jw-card-slider-flag-default:first-child'))
@@ -297,6 +314,10 @@ var stepsDefinition = function () {
 
     this.Then(/^I should see the description in the default slider/, function (callback) {
 
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
+
         browser
             .findElement(by.css('.feed .jw-card-slider-flag-default:first-child'))
             .findElement(by.css('.jw-card-slider-slide:first-child .jw-card-description'))
@@ -308,6 +329,10 @@ var stepsDefinition = function () {
     });
 
     this.Then(/^I should see the duration in the default slider/, function (callback) {
+
+        if ('safari' === browser.browserName) {
+            return callback(null, 'isDisplayed is not supported by SafariDriver');
+        }
 
         browser
             .findElement(by.css('.feed .jw-card-slider-flag-default:first-child'))
