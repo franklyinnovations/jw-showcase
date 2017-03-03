@@ -11,6 +11,7 @@ Feature: Watchlist
   Scenario: Save video to watchlist via the card menu
     Given I go to the "index" page
     And I wait until the page has been loaded
+    And the browser has localStorage support
     When I click on the card menu button of the first card
     And I click on the add to watchlist button in the card menu
     Then there should be 1 video in the watchlist
@@ -19,12 +20,14 @@ Feature: Watchlist
   Scenario: Remove button should be visible if the item is saved in the watchlist
     Given I am still on the "index" page
     And I wait until the page has been loaded
+    And the browser has localStorage support
     When I click on the card menu button of the first card
     Then the card menu should show a remove from watchlist button
 
   @desktop @tablet @mobile
   Scenario: Remove video from watchlist via the card menu
     Given I am still on the "index" page
+    And the browser has localStorage support
     When I click on the remove from watchlist button in the card menu
     And I click on the card menu button of the first card
     Then the card menu should show an add to watchlist button
@@ -32,12 +35,14 @@ Feature: Watchlist
   @desktop @tablet @mobile
   Scenario: There should be a remove from watchlist button visible in the card top left corner
     Given I am still on the "index" page
+    And the browser has localStorage support
     When I click on the add to watchlist button in the card menu
     Then the remove from watchlist button should be visible in the card
 
   @desktop @tablet @mobile
   Scenario: Remove video from watchlist via the card remove from watchlist button
     Given I am still on the "index" page
+    And the browser has localStorage support
     When I click on the remove from watchlist button in the card
     Then the watchlist should be hidden
 
@@ -45,6 +50,7 @@ Feature: Watchlist
   Scenario: Add video to watchlist via the add to watchlist button on the video page
     Given I go to the "/list/WXu7kuaW/video/DqGECHhT" page
     And I wait until the page has been loaded
+    And the browser has localStorage support
     When I click on the watchlist button in the video toolbar
     And wait for 1 seconds
     Then the remove from watchlist button should be visible on the video toolbar
@@ -52,6 +58,7 @@ Feature: Watchlist
   @desktop @tablet @mobile
   Scenario: Remove video from watchlist via the remove from watchlist button on the video page
     Given I am still on the "/list/WXu7kuaW/video/DqGECHhT" page
+    And the browser has localStorage support
     When I click on the watchlist button in the video toolbar
     And wait for 1 seconds
     Then the add to watchlist button should be visible on the video toolbar
@@ -63,6 +70,7 @@ Feature: Watchlist
       | LjBvF1FX | lrYLc95e |
       | Iyfst4Se | lrYLc95e |
     And I go to the "index" page
+    And the browser has localStorage support
     And I wait until the page has been loaded
     When I scroll to the watchlist slider
     And I click on the first card in the watchlist slider

@@ -43,6 +43,22 @@ var stepsDefinition = function () {
         });
     });
 
+    this.Given(/^the browser has localStorage support$/, function (callback) {
+
+        browser
+            .executeScript(function () {
+                return window.localStorageSupport;
+            })
+            .then(function (localStorageSupport) {
+
+                if (!localStorageSupport) {
+                    return callback(null, 'Browser has no localStorage support');
+                }
+
+                callback();
+            });
+    });
+
     this.When(/^I wait until the page has been loaded$/, function (callback) {
 
         browser

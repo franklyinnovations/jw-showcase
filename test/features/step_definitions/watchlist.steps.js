@@ -21,7 +21,12 @@ var stepsDefinition = function () {
         browser
             .addMockModule('app', function (watchlist) {
                 angular.module('app').run(function () {
-                    window.localStorage.setItem('jwshowcase.watchlist', JSON.stringify(watchlist));
+                    try {
+                        window.localStorage.setItem('jwshowcase.watchlist', JSON.stringify(watchlist));
+                    }
+                    catch(e) {
+
+                    }
                 });
             }, data.hashes());
 

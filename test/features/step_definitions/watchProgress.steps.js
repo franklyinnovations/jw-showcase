@@ -28,7 +28,11 @@ var stepsDefinition = function () {
         browser
             .addMockModule('app', function (watchProgress) {
                 angular.module('app').run(function () {
-                    window.localStorage.setItem('jwshowcase.watchprogress', JSON.stringify(watchProgress));
+                    try {
+                        window.localStorage.setItem('jwshowcase.watchprogress', JSON.stringify(watchProgress));
+                    }
+                    catch (e) {
+                    }
                 });
             }, data);
 
@@ -62,7 +66,12 @@ var stepsDefinition = function () {
             .addMockModule('app', function (watchProgress) {
                 window.localStorage.setItem('jwshowcase.watchprogress', JSON.stringify(watchProgress));
                 angular.module('app').run(function () {
-                    window.localStorage.setItem('jwshowcase.watchprogress', JSON.stringify(watchProgress));
+                    try {
+                        window.localStorage.setItem('jwshowcase.watchprogress', JSON.stringify(watchProgress));
+                    }
+                    catch (e) {
+
+                    }
                 });
             }, hashes);
 
@@ -144,10 +153,11 @@ var stepsDefinition = function () {
 
     this.Then(/the first card in "Continue watching" slider should have mediaid "([^"]*)"/, function (mediaid, callback) {
 
-        element(by.css('.watchProgress .jw-card-slider-slide:first-child .jw-card')).evaluate('item').then(function (item) {
-            expect(item.mediaid).to.equal(mediaid);
-            callback();
-        });
+        element(by.css('.watchProgress .jw-card-slider-slide:first-child .jw-card')).evaluate('item')
+            .then(function (item) {
+                expect(item.mediaid).to.equal(mediaid);
+                callback();
+            });
     });
 
     this.Then(/the first card in "Continue watching" slider should show "([^"]*)" watch progress/, function (width, callback) {
