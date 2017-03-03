@@ -13,6 +13,7 @@ Feature: Watch progress
     When I start video playback
     And I wait until the video starts playing
     And I seek to 30 seconds
+    And wait for 2 seconds
     Then the video progress of mediaid "Iyfst4Se" and feedid "lrYLc95e" should be saved
 
   @desktop @tablet @mobile
