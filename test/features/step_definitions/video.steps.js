@@ -41,6 +41,14 @@ var stepsDefinition = function () {
                         .then(delay(callback, 2000));
                 }
 
+                // ie doesn't support pointer events, display icon will receive the click
+                if (className.indexOf('jw-ie') !== -1) {
+                    return browser
+                        .findElement(by.css('.jwplayer .jw-icon-display'))
+                        .click()
+                        .then(delay(callback, 2000));
+                }
+
                 browser
                     .findElement(by.css('.jwplayer .jw-video'))
                     .click()
@@ -67,6 +75,7 @@ var stepsDefinition = function () {
                 }
 
                 elements[num - 1]
+                    .findElement(by.css('.jw-card'))
                     .click()
                     .then(callback);
             });

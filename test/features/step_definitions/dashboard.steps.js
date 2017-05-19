@@ -64,6 +64,7 @@ var stepsDefinition = function () {
 
         browser
             .findElement(by.css('.jw-card-slider-flag-featured .jw-card-slider-slide.is-visible'))
+            .findElement(by.css('.jw-card'))
             .click()
             .then(delay(callback, 1000));
     });
