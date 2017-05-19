@@ -89,7 +89,7 @@ var stepsDefinition = function () {
 
     this.When(/^I move my mouse to the first item in the (\d+)(?:st|nd|th|rd) default slider$/, function (slider, callback) {
 
-        if ('safari' === browser.browserName) {
+        if (/safari|firefox/i.test(browser.browserName)) {
             return callback(null, 'pending');
         }
 
