@@ -70,12 +70,12 @@ var stepsDefinition = function () {
             .findElements(by.css('.jw-card-slider[feed="vm.feed"] .jw-card-slider-slide.is-visible'))
             .then(function (elements) {
 
-                if (!elements[num - 1]){
+                if (!elements[num - 1]) {
                     callback();
                 }
 
                 elements[num - 1]
-                    .findElement(by.css('.jw-card'))
+                    .findElement(by.css('.jw-card-container'))
                     .click()
                     .then(callback);
             });

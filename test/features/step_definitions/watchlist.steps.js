@@ -103,7 +103,7 @@ var stepsDefinition = function () {
     this.When(/^I click on the first card in the watchlist slider$/, function (callback) {
 
         browser
-            .findElement(by.css('.jw-feed-saved-videos .jw-card-slider-slide:first-child .jw-card'))
+            .findElement(by.css('.jw-feed-saved-videos .jw-card-slider-slide.first .jw-card-container'))
             .click()
             .then(delay(callback, 1200));
     });
