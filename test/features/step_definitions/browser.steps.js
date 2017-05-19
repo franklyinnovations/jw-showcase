@@ -14,6 +14,8 @@
  * governing permissions and limitations under the License.
  **/
 
+var url = require('url');
+
 var stepsDefinition = function () {
     
     this.Given(/^I go to the "([^"]*)" page$/, function (arg1, callback) {
@@ -80,7 +82,7 @@ var stepsDefinition = function () {
         browser
             .getCurrentUrl()
             .then(function (currentUrl) {
-                expect(currentUrl).to.contain(arg1);
+                expect(url.parse(currentUrl).pathname).to.equal(arg1);
                 callback();
             });
     });
