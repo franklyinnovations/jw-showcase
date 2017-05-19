@@ -22,8 +22,12 @@ var stepsDefinition = function () {
 
     this.When(/^I scroll to the related slider$/, function (callback) {
 
-        scrollToElement('.jw-row[ng-if="vm.recommendationsFeed"]')
-            .then(callback);
+        browser
+            .findElement(by.css('.jw-row[ng-if="vm.recommendationsFeed"]'))
+            .then(function (element) {
+                scrollToElement(element)
+                    .then(callback);
+            });
     });
 
     this.When(/^I start video playback$/, function (callback) {
@@ -54,14 +58,6 @@ var stepsDefinition = function () {
                     .click()
                     .then(delay(callback, 2000));
             });
-    });
-
-    this.When(/^I click on the mobile video viewport$/, function (callback) {
-
-        browser
-            .findElement(by.css('video'))
-            .click()
-            .then(callback);
     });
 
     this.When(/^I click on the (\d+)(?:st|nd|rd|th) visible card in the more like this slider$/, function (num, callback) {
@@ -113,8 +109,12 @@ var stepsDefinition = function () {
 
     this.When(/^I scroll to the more like this slider$/, function (callback) {
 
-        scrollToElement('.jw-card-slider[feed="vm.feed"]')
-            .then(callback);
+        browser
+            .findElement(by.css('.jw-card-slider[feed="vm.feed"]'))
+            .then(function (element) {
+                scrollToElement(element)
+                    .then(callback);
+            });
     });
 
     this.When(/^I seek to the end of video$/, function (callback) {
@@ -145,19 +145,6 @@ var stepsDefinition = function () {
             });
     });
 
-    this.Then(/^I move my mouse over the video$/, function (callback) {
-
-        if ('safari' === browser.browserName) {
-            return callback(null, 'pending');
-        }
-
-        element(by.css('.jwplayer'))
-            .actions()
-            .mouseMove(el)
-            .perform()
-            .then(delay(callback, 2000));
-    });
-
     this.Then(/^the video player is ready$/, function (callback) {
 
         browser
@@ -182,7 +169,9 @@ var stepsDefinition = function () {
 
     this.Then(/^the related videos title is shown$/, function (callback) {
 
-        scrollToElement('.jw-row[ng-if="vm.feed"]')
+        browser
+            .findElement(by.css('.jw-row[ng-if="vm.feed"]'))
+            .then(scrollToElement)
             .then(function () {
                 browser
                     .findElement(by.css('.jw-row[ng-if="vm.feed"]'))
