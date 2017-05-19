@@ -55,14 +55,12 @@ Feature: Watchlist
     Given I go to the "/list/WXu7kuaW/video/DqGECHhT" page
     And I wait until the page has been loaded
     When I click on the watchlist button in the video toolbar
-    And wait for 1 seconds
     Then the remove from watchlist button should be visible on the video toolbar
 
   @desktop @tablet @mobile
   Scenario: Remove video from watchlist via the remove from watchlist button on the video page
     Given I am still on the "/list/WXu7kuaW/video/DqGECHhT" page
     When I click on the watchlist button in the video toolbar
-    And wait for 1 seconds
     Then the add to watchlist button should be visible on the video toolbar
 
   @desktop @tablet @mobile
