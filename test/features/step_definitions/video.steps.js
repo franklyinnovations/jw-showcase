@@ -118,10 +118,11 @@ var stepsDefinition = function () {
     this.When(/^I seek to (\d+) seconds/, function (position, callback) {
 
         browser
-            .executeScript(function (pos) {
+            .executeAsyncScript(function (pos, callback) {
+                jwplayer().once('seeked', callback);
                 jwplayer().seek(pos);
             }, [position])
-            .then(callback);
+            .then(delay(callback, 200));
     });
 
     this.Then(/^the video not found page should be visible$/, function (callback) {
