@@ -132,7 +132,11 @@ function createCapabilities (capabilities, tags) {
     capabilities['browserstack.user']             = env.BROWSERSTACK_USER || env.BS_USERNAME;
     capabilities['browserstack.key']              = env.BROWSERSTACK_KEY || env.BS_AUTHKEY;
     capabilities['browserstack.local']            = true;
-    capabilities['browserstack.selenium_version'] = '3.4.0';
+
+    // Selenium 3.4.0 does not work great with IE11
+    if (capabilities.browserName !== 'internet explorer') {
+        capabilities['browserstack.selenium_version'] = '3.4.0';
+    }
 
     capabilities.project = pkg.name;
     capabilities.build   = env.BROWSERSTACK_BUILD || pkg.version;
