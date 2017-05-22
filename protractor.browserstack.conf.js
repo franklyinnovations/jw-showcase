@@ -5,8 +5,8 @@ var browserstack = require('browserstack-local'),
 
 exports.config = {
 
-    allScriptsTimeout: 20000,
-    getPageTimeout:    20000,
+    allScriptsTimeout: 30000,
+    getPageTimeout:    30000,
 
     baseUrl: 'http://localhost:9001',
 
