@@ -115,7 +115,7 @@ var stepsDefinition = function () {
 
     this.When(/^I scroll to the watchlist slider$/, function (callback) {
 
-        return browser
+        browser
             .findElement(by.css('.jw-feed-saved-videos'))
             .then(scrollToElement)
             .then(callback);

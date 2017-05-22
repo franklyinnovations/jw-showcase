@@ -90,7 +90,7 @@ var stepsDefinition = function () {
 
     this.When(/^I click on the back button in the toolbar$/, function (callback) {
 
-        return scrollToElement('.jw-toolbar')
+        scrollToElement('.jw-toolbar')
             .then(function () {
                 return browser
                     .findElement(by.css('.jw-toolbar .jw-button-back'))
