@@ -42,11 +42,13 @@ var stepsDefinition = function () {
                         .perform();
                 }
 
-                // ie doesn't support pointer events, display icon will receive the click
+                // ie doesn't start the video with a click
                 if (className.indexOf('jw-ie') !== -1) {
                     return browser
-                        .findElement(by.css('.jwplayer .jw-icon-display'))
-                        .click();
+                        .executeScript(function () {
+                            jwplayer().play(true);
+                        })
+                        .then(callback);
                 }
 
                 browser
