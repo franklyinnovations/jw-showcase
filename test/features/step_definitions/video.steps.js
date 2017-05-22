@@ -24,10 +24,8 @@ var stepsDefinition = function () {
 
         browser
             .findElement(by.css('.jw-row[ng-if="vm.recommendationsFeed"]'))
-            .then(function (element) {
-                scrollToElement(element)
-                    .then(callback);
-            });
+            .then(scrollToElement)
+            .then(callback);
     });
 
     this.When(/^I start video playback$/, function (callback) {
@@ -41,23 +39,21 @@ var stepsDefinition = function () {
                     return browser
                         .touchActions()
                         .tap(element(by.css('.jwplayer .jw-icon-display')))
-                        .perform()
-                        .then(delay(callback, 2000));
+                        .perform();
                 }
 
                 // ie doesn't support pointer events, display icon will receive the click
                 if (className.indexOf('jw-ie') !== -1) {
                     return browser
                         .findElement(by.css('.jwplayer .jw-icon-display'))
-                        .click()
-                        .then(delay(callback, 2000));
+                        .click();
                 }
 
                 browser
                     .findElement(by.css('.jwplayer .jw-video'))
-                    .click()
-                    .then(delay(callback, 2000));
-            });
+                    .click();
+            })
+            .then(delay(callback, 2000));
     });
 
     this.When(/^I click on the (\d+)(?:st|nd|rd|th) visible card in the more like this slider$/, function (num, callback) {
@@ -65,16 +61,11 @@ var stepsDefinition = function () {
         browser
             .findElements(by.css('.jw-card-slider[feed="vm.feed"] .jw-card-slider-slide.is-visible'))
             .then(function (elements) {
-
-                if (!elements[num - 1]) {
-                    callback();
-                }
-
-                elements[num - 1]
+                return elements[num - 1]
                     .findElement(by.css('.jw-card-container'))
-                    .click()
-                    .then(callback);
-            });
+                    .click();
+            })
+            .then(callback);
     });
 
     this.When(/^I start playing the next playlist item$/, function (callback) {
@@ -111,10 +102,8 @@ var stepsDefinition = function () {
 
         browser
             .findElement(by.css('.jw-card-slider[feed="vm.feed"]'))
-            .then(function (element) {
-                scrollToElement(element)
-                    .then(callback);
-            });
+            .then(scrollToElement)
+            .then(callback);
     });
 
     this.When(/^I seek to the end of video$/, function (callback) {
@@ -173,21 +162,21 @@ var stepsDefinition = function () {
             .findElement(by.css('.jw-row[ng-if="vm.feed"]'))
             .then(scrollToElement)
             .then(function () {
-                browser
+                return browser
                     .findElement(by.css('.jw-row[ng-if="vm.feed"]'))
                     .findElement(by.css('.jw-card-slider-flag-default'))
                     .findElement(by.css('.jw-card-slider-title'))
-                    .getText()
-                    .then(function (title) {
+                    .getText();
+            })
+            .then(function (title) {
 
-                        // title can contain an icon and multiple whitespaces
-                        title = title
-                            .replace(/\s{2,}/g, ' ')
-                            .trim();
+                // title can contain an icon and multiple whitespaces
+                title = title
+                    .replace(/\s{2,}/g, ' ')
+                    .trim();
 
-                        expect(title).to.equal('More like this (9)');
-                        callback();
-                    });
+                expect(title).to.equal('More like this (9)');
+                callback();
             });
     });
 

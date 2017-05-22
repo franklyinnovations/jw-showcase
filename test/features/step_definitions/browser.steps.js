@@ -17,7 +17,7 @@
 var url = require('url');
 
 var stepsDefinition = function () {
-    
+
     this.Given(/^I go to the "([^"]*)" page$/, function (arg1, callback) {
 
         arg1 = 'index' === arg1 ? '/' : arg1;
@@ -45,6 +45,30 @@ var stepsDefinition = function () {
         });
     });
 
+    this.Given(/^the browser has localStorage support$/, function (callback) {
+
+        browser
+            .executeScript(function () {
+                try {
+                    window.localStorage.setItem('test', 'test');
+                    window.localStorage.removeItem('test');
+                    return true;
+                } catch (e) {
+
+                }
+
+                return false;
+            })
+            .then(function (localStorageSupport) {
+
+                if (!localStorageSupport) {
+                    return callback(null, 'pending');
+                }
+
+                callback();
+            });
+    });
+
     this.When(/^I wait until the page has been loaded$/, function (callback) {
 
         browser
@@ -66,13 +90,13 @@ var stepsDefinition = function () {
 
     this.When(/^I click on the back button in the toolbar$/, function (callback) {
 
-        scrollToElement('.jw-toolbar')
+        return scrollToElement('.jw-toolbar')
             .then(function () {
-                browser
+                return browser
                     .findElement(by.css('.jw-toolbar .jw-button-back'))
-                    .click()
-                    .then(callback);
-            });
+                    .click();
+            })
+            .then(callback);
     });
 
     this.Then(/^I should navigate to the "([^"]*)" page/, function (arg1, callback) {

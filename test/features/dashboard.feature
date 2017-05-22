@@ -70,15 +70,14 @@ Feature: Dashboard page
   @mobile @tablet @desktop
   Scenario: As a user I want to see the title with video count of the second default slider
     Given I am still on the "index" page
-    And I scroll to the 2nd default slider
     When I wait until the page has been loaded
+    And I scroll to the 2nd default slider
     Then the title of the 2nd default slider should be "Comedy (5)"
 
   @mobile @tablet @desktop
   Scenario: As a user I want to see the title of the items in the default sliders
     Given I go to the "index" page
     When I wait until the page has been loaded
-    And I scroll to the 2nd default slider
     Then the card titles should be visible in the 1st default slider
 
   @tablet @desktop
